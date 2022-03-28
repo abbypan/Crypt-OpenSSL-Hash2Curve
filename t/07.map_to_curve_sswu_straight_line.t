@@ -4,7 +4,7 @@ use warnings;
 use Test::More ;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-use Crypt::OpenSSL::Hash2Curve;
+use Crypt::OpenSSL::Hash2Curve qw/OBJ_sn2nid EC_GROUP_get_curve map_to_curve_sswu_straight_line calc_c1_c2_for_sswu/;
 
 my $group_name = "prime256v1";
 my $nid = OBJ_sn2nid($group_name);
@@ -16,7 +16,8 @@ my $a = Crypt::OpenSSL::Bignum->zero;
 my $b = Crypt::OpenSSL::Bignum->zero;
 my $z = Crypt::OpenSSL::Bignum->new_from_decimal('-10');
 #$group->get_order( $order, $ctx );
-$group->get_curve($p, $a, $b, $ctx);
+#$group->get_curve($p, $a, $b, $ctx);
+EC_GROUP_get_curve($group, $p, $a, $b, $ctx);
 my $p_hex = $p->to_hex;
 print "p: $p_hex\n";
 my $a_hex = $a->to_hex;
@@ -31,7 +32,15 @@ my $u = Crypt::OpenSSL::Bignum->new_from_hex($u_hex);
 my $x = Crypt::OpenSSL::Bignum->zero;
 my $y = Crypt::OpenSSL::Bignum->zero;
 
-map_to_curve_sswu($p, $a, $b, $z, $u, $x, $y, $ctx);
+my $c1 = Crypt::OpenSSL::Bignum->zero;
+my $c2 = Crypt::OpenSSL::Bignum->zero;
+calc_c1_c2_for_sswu($c1, $c2, $p, $a, $b, $z, $ctx);
+my $c1_hex = $c1->to_hex;
+print "c1: $c1_hex\n";
+my $c2_hex = $c2->to_hex;
+print "c2: $c2_hex\n";
+
+map_to_curve_sswu_straight_line($c1, $c2, $p, $a, $b, $z, $u, $x, $y, $ctx);
 print "u: $u_hex\n";
 my $x_hex = $x->to_hex;
 print "x: $x_hex\n";

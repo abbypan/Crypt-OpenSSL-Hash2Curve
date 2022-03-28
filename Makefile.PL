@@ -29,7 +29,13 @@ $inc =~ s/[\r\n]+/ /g;
 WriteMakefile(
     NAME              => 'Crypt::OpenSSL::Hash2Curve',
     VERSION_FROM      => 'Hash2Curve.pm',
-    PREREQ_PM         => { 'Crypt::OpenSSL::Bignum' => 0.01,
+    'LICENSE'  => 'mpl_2_0', 
+    PREREQ_PM         => { 
+        'Crypt::OpenSSL::Bignum' => 0.01,
+        'Crypt::OpenSSL::EC' => 0.01,
+        'Math::BigInt' => 0.01,
+        'Carp' => 0.01,
+        'Test::More' => 0.01,
                           }, 
     ($] >= 5.005 ?     
       (ABSTRACT_FROM  => 'Hash2Curve.pm', 
@@ -37,4 +43,8 @@ WriteMakefile(
     LIBS              => [ $lib ],
     DEFINE            => '-DPERL5 -DOPENSSL_NO_KRB5',
     INC               => $inc,
+    dist => {
+        COMPRESS => "bzip2",
+        SUFFIX   => ".bz2"
+    },
 );
