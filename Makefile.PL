@@ -31,9 +31,9 @@ WriteMakefile(
     VERSION_FROM      => 'Hash2Curve.pm',
     'LICENSE'  => 'mpl_2_0', 
     PREREQ_PM         => { 
-        'Crypt::OpenSSL::Bignum' => 0.01,
-        'Crypt::OpenSSL::EC' => 0.01,
-        'Math::BigInt' => 0.01,
+        'Crypt::OpenSSL::Bignum' => 0.09,
+        'Crypt::OpenSSL::EC' => 1.31,
+        'Math::BigInt' => 1.999815,
         'Carp' => 0.01,
         'Test::More' => 0.01,
                           }, 
