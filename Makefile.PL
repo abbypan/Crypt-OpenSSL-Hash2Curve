@@ -29,7 +29,7 @@ $inc =~ s/[\r\n]+/ /g;
 WriteMakefile(
     NAME              => 'Crypt::OpenSSL::Hash2Curve',
     VERSION_FROM      => 'Hash2Curve.pm',
-    'LICENSE'  => 'mpl_2_0', 
+    'LICENSE'  => 'Mozilla_2_0', 
     PREREQ_PM         => { 
         'Crypt::OpenSSL::Bignum' => 0.09,
         'Crypt::OpenSSL::EC' => 1.31,
