@@ -1,6 +1,5 @@
 package Crypt::OpenSSL::Hash2Curve;
 
-use 5.008005;
 use strict;
 use warnings;
 use bignum;
@@ -14,6 +13,8 @@ use Crypt::OpenSSL::Bignum;
 use Math::BigInt;
 use POSIX;
 #use Data::Dump qw/dump/;
+
+our $VERSION = '0.021';
 
 our @ISA = qw(Exporter);
 
@@ -48,7 +49,6 @@ our @EXPORT = qw(
 
 our @EXPORT_OK = @EXPORT;
 
-our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load( 'Crypt::OpenSSL::Hash2Curve', $VERSION );

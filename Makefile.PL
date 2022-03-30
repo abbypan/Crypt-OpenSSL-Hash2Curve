@@ -36,6 +36,7 @@ WriteMakefile(
         'Math::BigInt' => 1.999815,
         'Carp' => 0.01,
         'Test::More' => 0.01,
+        'bignum' => 0.52, 
                           }, 
     ($] >= 5.005 ?     
       (ABSTRACT_FROM  => 'Hash2Curve.pm', 
