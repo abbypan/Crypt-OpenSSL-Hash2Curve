@@ -11,10 +11,11 @@ use AutoLoader;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
 use Math::BigInt;
+use Math::BigRat;
 use POSIX;
 #use Data::Dump qw/dump/;
 
-our $VERSION = '0.021';
+our $VERSION = '0.022';
 
 our @ISA = qw(Exporter);
 
@@ -180,7 +181,10 @@ sub hash_to_field {
 
   my $p_bin    = $p->to_bin();
   my $p_bigint = Math::BigInt->from_bytes( $p_bin );
-  my $L        = scalar $p_bigint->blog( 2 )->bceil()->badd( $k )->bdiv( 8 )->bceil();
+
+  my $L = Math::BigInt->from_bytes( $p_bin );
+  $L = $L->blog( 2 )->bceil()->numify();
+  $L = ceil(($L + $k)/8);
 
   my $len_in_bytes  = $count * $m * $L;
   my $uniform_bytes = $expand_message_func->( $msg, $DST, $len_in_bytes, $hash_name );
@@ -197,6 +201,7 @@ sub hash_to_field {
       #my $e_j = $tv_bn->to_hex();
       my $e_j   = $tv_bn->to_bytes();
       my $e_j_u = Crypt::OpenSSL::Bignum->new_from_bin( $e_j );
+
       push @u, $e_j_u;
     }
     push @res, \@u;
