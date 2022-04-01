@@ -11,7 +11,6 @@ use AutoLoader;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
 use Math::BigInt;
-use Math::BigRat;
 use POSIX;
 #use Data::Dump qw/dump/;
 
