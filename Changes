@@ -1,5 +1,8 @@
 Revision history for Perl extension Crypt::OpenSSL::Hash2Curve
 
+0.03  2022/04/02
+   - use Crypt::OpenSSL::Base::Func
+
 0.022  2022/03/31
 	- fix hash_to_field bug, calculate L = 48 for P-256
 
