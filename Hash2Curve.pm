@@ -16,7 +16,7 @@ use POSIX qw/ceil/;
 #use Data::Dump qw/dump/;
 #use Smart::Comments;
 
-our $VERSION = '0.033';
+our $VERSION = '0.034';
 
 our @ISA = qw(Exporter);
 
